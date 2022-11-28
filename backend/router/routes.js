@@ -1,12 +1,13 @@
 import express from "express";
 
+//Controllers
+import postRegister from "../controllers/postRegister.js";
+
 const router = express.Router();
 
 
-router.get("/test", (req, res)=>{
-    console.log(req.headers);
-    res.json({msg: "OK"});
-});
+
+router.post("/register", postRegister);
 
 
 export default router;
