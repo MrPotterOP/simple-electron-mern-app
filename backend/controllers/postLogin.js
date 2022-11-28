@@ -14,7 +14,8 @@ const postLogin = (req, res)=>{
     //Functional Components
 
     const genLogs = (token, name)=>{
-        logs.create({name, userAgent});
+        logs.create({user: name, userAgent,});
+
         res.json({token: `Bearer ${token}`});
     }
 
