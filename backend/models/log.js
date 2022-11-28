@@ -5,8 +5,8 @@ var d = new Date();
 
 
 const logSchema = new mongoose.Schema({
-    user: {type: String, require: true},
-    userAgent: {type: String, require: true},
+    user: {type: String, required: true},
+    userAgent: {type: String, required: true},
     time: {type: String, default: d.toUTCString()}
 });
 
