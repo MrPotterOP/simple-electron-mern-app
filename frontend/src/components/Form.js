@@ -1,6 +1,6 @@
 import React,{useRef} from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useNavigate, Link} from "react-router-dom";
 
 const Form = ({isLogin})=>{
@@ -22,7 +22,8 @@ const Form = ({isLogin})=>{
     }
 
     const handelSuccess = (e)=>{
-        Cookies.set("token", e);
+        // Cookies.set("token", e);
+        localStorage.setItem("token", e);
         navigate("/");
     }
 
@@ -107,7 +108,7 @@ const Form = ({isLogin})=>{
                     <RouteLink />
                 </div>
                 <div className="form-right-container">
-                    <img src="/images/bg.jpg" alt="building-architecture"></img>
+                    <img src="https://i.ibb.co/YB82yy3/bg.jpg" alt="building-architecture"></img>
                 </div>
             </div>
         </section>

@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,7 +9,8 @@ import Loading from "./Loading";
 
 const HomePage = ()=>{
     const url = "https://simple-login-app.onrender.com/api/homepage";
-    const token = Cookies.get("token");
+    // const token = Cookies.get("token");
+    const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
     const [name, setName] = useState("");
@@ -23,7 +24,8 @@ const HomePage = ()=>{
         }
 
         const handleError = ()=>{
-            Cookies.remove("token");
+            // Cookies.remove("token");
+            localStorage.removeItem("token");
             navigate("/register");
         }
 
@@ -38,7 +40,8 @@ const HomePage = ()=>{
     //Handlers
 
     const handleClick = ()=>{
-        Cookies.remove("token");
+        // Cookies.remove("token");
+        localStorage.removeItem("token");
         window.location.reload();
     }
 
@@ -48,7 +51,7 @@ const HomePage = ()=>{
 
     const Message = ()=>{
         return(
-            <section className="section-welcome" style={{background: `url("/images/welcome-bg.jpg")`}}>
+            <section className="section-welcome" style={{background: `url("https://i.ibb.co/6Ffy7Hp/welcome-bg.jpg")`}}>
                 <nav className="welcome-nav">
                 <p className="login-msg">You have successfully logged in.</p>
                 <button onClick={()=> handleClick()} className="btn-sec">Log Out</button>

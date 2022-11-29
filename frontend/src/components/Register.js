@@ -1,5 +1,5 @@
 import React,{useEffect} from "react";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 
@@ -8,7 +8,8 @@ import Form from "../components/Form.js";
 
 
 const Register = ({isLogin})=>{
-    const token = Cookies.get("token");
+    // const token = Cookies.get("token");
+    const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
     useEffect(()=>{
