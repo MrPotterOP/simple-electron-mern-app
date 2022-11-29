@@ -35,13 +35,28 @@ const HomePage = ()=>{
         }
     }, [navigate, token]);
 
+    //Handlers
+
+    const handleClick = ()=>{
+        Cookies.remove("token");
+        window.location.reload();
+    }
+
 
     
     
 
     const Message = ()=>{
         return(
-            <h1>Welcome, {name}</h1>
+            <section className="section-welcome" style={{background: `url("/images/welcome-bg.jpg")`}}>
+                <nav className="welcome-nav">
+                <p className="login-msg">You have successfully logged in.</p>
+                <button onClick={()=> handleClick()} className="btn-sec">Log Out</button>
+                </nav>
+                <div className="welcome-msg-container">
+                    <h1 className="welcome-msg">Welcome <span>{name}</span></h1>
+                </div>
+            </section>
         )
     }
 
