@@ -8,7 +8,7 @@ import Loading from "./Loading";
 
 
 const HomePage = ()=>{
-    const url = "http://localhost:4000/api/homepage";
+    const url = "https://simple-login-app.onrender.com/api/homepage";
     const token = Cookies.get("token");
     const navigate = useNavigate();
 
