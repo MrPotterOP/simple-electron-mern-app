@@ -1,11 +1,19 @@
 import user from "../models/user.js";
+import logs from "../models/log.js";
 import jwt from "jsonwebtoken";
 
 
 const checkToken = (req, res, next)=>{
     const rawToken = req.headers.authorization;
+    const userAgent = req.headers['user-agent'];
 
     //Functional Components
+
+    const genLogs = (name)=>{
+        logs.create({user: name, userAgent,});
+        next();
+    }
+
     const checkUser = (id)=>{
         user.findOne({_id: id}, (err, doc)=>{
             if(err){
@@ -14,7 +22,7 @@ const checkToken = (req, res, next)=>{
                 return res.status(401).json({msg: "Unuthorized Access."});
             }else{
                 req.user = {id: doc._id, name: doc.name}
-                next();
+                genLogs(doc.name);
             }
         })
     }
