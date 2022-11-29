@@ -7,17 +7,11 @@ import logs from "../models/log.js";
 
 const postLogin = (req, res)=>{
     const {email, password} = req.body;
-    const userAgent = req.headers['user-agent'];
+    
 
 
 
     //Functional Components
-
-    const genLogs = (token, name)=>{
-        logs.create({user: name, userAgent,});
-
-        res.json({token: `Bearer ${token}`});
-    }
 
 
     const genToken = (doc)=>{
@@ -25,11 +19,23 @@ const postLogin = (req, res)=>{
             if(err){
                 return res.status(401).json({msg: "Unable to Generate Token."});
             }else if(!token){
-                return res.status(401).json({msg: "Unable to Generate Token."});
+                return res.status(403).json({msg: "Unable to Generate Token."});
             }else {
-                genLogs(token, doc.name);
+                return res.json({token: `Bearer ${token}`});
             }
         });
+    }
+
+    const verifyPassword = (doc)=>{
+        bcrypt.compare(password, doc.password, (err, success)=>{
+            if(err){
+                return res.status(401).json({msg: "Incorrect Password."});
+            }else if(!success){
+                return res.status(401).json({msg: "Incorrect Password."});
+            }else{
+                genToken(doc);
+            }
+        })
     }
 
     //Main JS
@@ -44,7 +50,7 @@ const postLogin = (req, res)=>{
                 return res.status(501).json({msg: "Something Went Wrong."});
             }else if(doc){
 
-               genToken(doc); 
+                verifyPassword(doc);
 
             }
         })
