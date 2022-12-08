@@ -5,7 +5,8 @@ import { useNavigate, Link} from "react-router-dom";
 
 const Form = ({isLogin})=>{
 
-    const url = isLogin ? "https://simple-login-app.onrender.com/api/login" : "https://simple-login-app.onrender.com/api/register";
+    // const url = isLogin ? "https://simple-login-app.onrender.com/api/login" : "https://simple-login-app.onrender.com/api/register";
+    const url = isLogin ? "http://34.131.61.47:4000/api/login" : "http://34.131.61.47:4000/api/register";
     
     const name = useRef(null);
     const email = useRef(null);
